@@ -1,10 +1,4 @@
 # cybertoolv1
-Cybertoolv1
-JWT_Fuzzer tool.
-
-Here’s a professional **README.md** for your `jwt_fuzzer` tool:
-
----
 
 # 🔑 JWT IDOR Fuzzer
 
