@@ -1,4 +1,4 @@
-# cybertoolv1
+# README
 
 # 🔑 JWT IDOR Fuzzer
 
@@ -77,28 +77,25 @@ Use them in Burp Suite Intruder as follows:
 
 ---
 
-## 🧪 Example Output
+## 📂 Example `jwt_payloads.txt`
+
+When you run the tool, you’ll get a file like this (example with 5 tokens):
 
 ```text
-=== Original JWT Analysis ===
-Header: {
-  "alg": "HS256",
-  "typ": "JWT"
-}
-Payload: {
-  "unique_name": "Felcon September",
-  "email": "felconsec@wearehackerone.com",
-  "sid": "00000000-0000-0000-0342-ab857e74c03a"
-}
-
-=== Potential IDOR Fields ===
-- unique_name: Felcon September
-- email: felconsec@wearehackerone.com
-- sid: 00000000-0000-0000-0342-ab857e74c03a
-
-Exported 20 tokens to jwt_payloads.txt
-Use the tokens in Burp Suite Intruder.
+eyJhbGciOiJub25lIiwidHlwIjoiSldUIn0.eyJ1bmlxdWVfbmFtZSI6IlVzZXIzNTI4Iiwic3ViIjoiZDQ4ZjAzNjAtYjE4Mi00ZjQ5LTgxZjctYzM1ZWFmNzY4YzJmIiwiaWF0IjoxNzUwODcxOTU0LCJuYmYiOjE3NTA4NzE5NTQsImV4cCI6MTc1MDg3NTU1NH0.
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InJ3Z2VlaWVAZ21haWwuY29tIiwidXNlcl9pZCI6IjM2YjZlZGI0LWQ2N2ItNGIxNS05ZmZkLTlhYjY5MmVjMmU2NyIsImlhdCI6MTc1MDg3MTk1NCwibmJmIjoxNzUwODcxOTU0LCJleHAiOjE3NTA4NzU1NTR9.M3pGJ8ZYYq3Qnl5pgn-M8r8eqhU
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6IlVzZXIxMjM0Iiwic2lkIjoiMDAwMDAwMDAtMDAwMC0wMDAwLTAwMDAwMDAwMDAxIiwiaWF0IjoxNzUwODcxOTU0LCJuYmYiOjE3NTA4NzE5NTQsImV4cCI6MTc1MDg3NTU1NH0.LfK2vQvNITkxM0Hx5
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYWRtaW4iLCJpYXQiOjE3NTA4NzE5NTQsIm5iZiI6MTc1MDg3MTk1NCwiZXhwIjoxNzUwODc1NTU0fQ.1A-wkUl7y0j69eRW
+eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc19hZG1pbiI6dHJ1ZSwiaWF0IjoxNzUwODcxOTU0LCJuYmYiOjE3NTA4NzE5NTQsImV4cCI6MTc1MDg3NTU1NH0.iAH5O9uC2Qw9TyN0
 ```
+
+### 🔎 What’s inside
+
+1. **Unsigned JWT** (`alg: none`) with fuzzed `unique_name` + `sub` (UUID).
+2. **HS256 with weak secret** (`secret`) and fuzzed email + user\_id.
+3. **Sequential SID variation** (`...0001`).
+4. **Privilege escalation attempt** (`role: admin`).
+5. **Privilege escalation attempt** (`is_admin: true`).
 
 ---
 
@@ -114,5 +111,4 @@ Do not use it against systems without **explicit permission**. Unauthorized use 
 MIT License – Free to use and modify.
 
 ---
-
 
